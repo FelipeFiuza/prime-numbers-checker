@@ -137,7 +137,15 @@ document.getElementById("nextPrime").onclick = function () {
         
         end = 0,
     
-        timeTaken = 0;
+        timeTaken = 0,
+    
+        loopdiv = 3,
+
+        sqRoot = Math.pow(primeCandidate, 1 / 2),
+
+        primeSearch = true,
+
+        divfound = false;
 
     primeCandidate++;
 
@@ -147,41 +155,35 @@ document.getElementById("nextPrime").onclick = function () {
         
         timeTaken = end - start;
 
-        document.getElementById('answerPrime').innerHTML += "<br><br>The next prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!"; 
-
+        document.getElementById('answerPrime').innerHTML += "<br><br>The next prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+        
         return;
 
     }
 
-    if (primeCandidate == 3) {
+    if (primeCandidate === 3) {
 
-        var end = new Date().getTime();
+        end = new Date().getTime();
+        
+        timeTaken = end - start;
 
-        document.getElementById('answerPrime').innerHTML += "<br><br>The next prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!"; 
-
+        document.getElementById('answerPrime').innerHTML += "<br><br>The next prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+        
         return;
 
     }
 
-    if (primeCandidate % 2 == 0){
+    if (primeCandidate % 2 === 0) {
 
         primeCandidate++;
 
     }
-
-    var loopdiv = 3;
-
-    var sqRoot = Math.pow(primeCandidate, 1 / 2);
-
-    var primeSearch = true;
-
-    var divfound = false;            
-
+    
     while (primeSearch) {
 
         while (loopdiv <= sqRoot && !divfound) {
 
-            if (primeCandidate % loopdiv == 0) {
+            if (primeCandidate % loopdiv === 0) {
 
                 primeCandidate += 2;
 
@@ -199,7 +201,7 @@ document.getElementById("nextPrime").onclick = function () {
 
         }
 
-        if (!divfound){
+        if (!divfound) {
 
             primeSearch = false;
 
@@ -207,15 +209,17 @@ document.getElementById("nextPrime").onclick = function () {
 
             loopdiv = 3;
 
-            sqRoot = Math.pow(primeCandidate, 1/2);
+            sqRoot = Math.pow(primeCandidate, 1 / 2);
 
             divfound = false;
 
-        }              
-
+        }
+    
     }
 
     end = new Date().getTime();
+    
+    timeTaken = end - start;
 
     document.getElementById('answerPrime').innerHTML += "<br><br>The next prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
 
@@ -223,59 +227,71 @@ document.getElementById("nextPrime").onclick = function () {
 
     window.scrollTo(scroll.offsetLeft, scroll.offsetTop);
 
-}
+};
 
-document.getElementById("prevPrime").onclick = function() {
+document.getElementById("prevPrime").onclick = function () {
 
+    "use strict";
+    
     document.getElementById("prevPrime").disabled = "true";
 
-    var start = new Date().getTime();
+    var start = new Date().getTime(),
 
-    var primeCandidate = document.getElementById('userNumber').value;
+        primeCandidate = document.getElementById('userNumber').value,
+    
+        loopdiv = 3,
+
+        sqRoot = Math.pow(primeCandidate, 1 / 2),
+
+        primeSearch = true,
+
+        divfound = false,
+    
+        operations = 1,
+    
+        end = 0,
+
+        timeTaken = 0;
 
     primeCandidate--;
 
-    var operations = 1;
-
     if (primeCandidate < 2) {
 
-        var end = new Date().getTime();
+        end = new Date().getTime();
+        
+        timeTaken = end - start;
 
-        document.getElementById('answerPrime').innerHTML += "<br><br>There is no prime number below <br>  <div class = 'tested'>  2  </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!"; 
-
-        return;
-
-    }
-
-    if (primeCandidate == 2) {
-
-        var end = new Date().getTime();
-
-        document.getElementById('answerPrime').innerHTML += "<br><br>The previous prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!"; 
+        document.getElementById('answerPrime').innerHTML += "<br><br>There is no prime number below <br>  <div class = 'tested'>  2  </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
 
         return;
 
     }
 
-    if (primeCandidate % 2 == 0){
+    if (primeCandidate === 2) {
+
+        end = new Date().getTime();
+        
+        timeTaken = end - start;
+
+        document.getElementById('answerPrime').innerHTML += "<br><br>The previous prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+
+        return;
+
+    }
+
+    if (primeCandidate % 2 === 0) {
 
         primeCandidate--;
 
     }
 
-    var loopdiv = 3;
-
-    var sqRoot = Math.pow(primeCandidate, 1/2);
-
-    var primeSearch = true;
-
-    var divfound = false;
+    
 
     while (primeSearch) {
 
         while (loopdiv <= sqRoot && !divfound) {
 
-            if (primeCandidate % loopdiv == 0) {
+            if (primeCandidate % loopdiv === 0) {
 
                 primeCandidate -= 2;
 
@@ -293,7 +309,7 @@ document.getElementById("prevPrime").onclick = function() {
 
         }
 
-        if (!divfound){
+        if (!divfound) {
 
             primeSearch = false;
 
@@ -301,17 +317,17 @@ document.getElementById("prevPrime").onclick = function() {
 
             loopdiv = 3;
 
-            sqRoot = Math.pow(primeCandidate, 1/2);
+            sqRoot = Math.pow(primeCandidate, 1 / 2);
 
             divfound = false;
 
-        }              
+        }
 
     }
 
-    var end = new Date().getTime();
+    end = new Date().getTime();
 
-    var timeTaken = (end - start);
+    timeTaken = end - start;
 
     document.getElementById('answerPrime').innerHTML += "<br><br>The previous prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
 
@@ -319,4 +335,4 @@ document.getElementById("prevPrime").onclick = function() {
 
     window.scrollTo(scroll.offsetLeft, scroll.offsetTop);
 
-}
+};
