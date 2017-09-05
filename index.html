@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        
+        <title>Prime Numbers Checker</title>
+        
+        <meta charset="UTF-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=0.8">
+
+        <link  rel="stylesheet" type="text/css" href="main.css">
+
+    </head>
+    
+    <body>
+        
+        <div class = "container" id="top">
+            
+            <a href="index.html">Reset</a>
+            
+            <a href="/pt-br">Pt-br</a>
+            
+            <a href="#secondAnswer">Go Down</a>
+
+            <h1>Prime Numbers Checker</h1><br>
+
+            <p> Check here if your number is prime: </p>
+            
+            <label>
+
+                <input name="userNumber" type="number" min='1' max="9999999999999999" placeholder="9999999999999999" id="userNumber" step="1">
+
+                <input type="button" value="Check!" id="checkBtn">
+
+            </label>
+            
+            <br><p id='firstAnswer'></p><br><br><p id='secondAnswer'></p><br><p id='thirdAnswer'></p><br><p id='fourthAnswer'></p>
+            
+            <br>
+            
+            <input type="button" value="Next Prime" id="nextPrime" class="hidden">
+            
+            <input type="button" value="Previous Prime" id="prevPrime" class="hidden">
+            
+            <br>
+            
+            <p id="answerPrime"></p>
+            
+            <br>
+            
+            <a href="index.html" class="hidden">Reset</a>
+            
+            <a href="/pt-br" class="hidden">Pt-br</a>
+            
+            <a href="#top" class="hidden">Go Up</a>
+
+        </div>
+        
+    </body>
+    
+        <script src="main.js"></script>
+            
+        <script type="text/javascript">
+            
+            /*document.getElementById('checkBtn').onclick = function() {
+                
+                document.getElementById("checkBtn").disabled = "true";
+                
+                document.getElementById("userNumber").disabled = "true";        
+                
+                var start = new Date().getTime();
+                
+                var userNumber = document.getElementById('userNumber').value;
+                
+                var divisors = [];
+                
+                var loopdiv = 2;
+                
+                var quotient = 0;
+                
+                var sqRoot = Math.pow(userNumber, 1/2);
+                
+                var increment = 1;
+                
+                var operations = 1;
+                
+                if (userNumber % 2 != 0){
+                    
+                    loopdiv = 3;
+                    
+                    increment = 2;
+                    
+                }
+                                
+                while (loopdiv <= sqRoot) {
+                    
+                    if (userNumber % loopdiv == 0){
+                        
+                        quotient = userNumber/loopdiv;
+                        
+                        divisors.push(loopdiv);
+                        
+                        if (quotient != loopdiv){
+                            
+                            divisors.push(quotient);
+                        }
+                        
+                        operations++;
+                        
+                        loopdiv += increment;
+                            
+                    } else {
+                        
+                        operations++;
+                        
+                        loopdiv += increment;
+                        
+                    }
+                    
+                }
+                
+                var i = 0;
+                
+                var divList = "";
+                
+                var divLeng = divisors.length;
+                
+                while (i < divLeng) {
+                    
+                    divList += "<div class='result'>"+divisors[i]+"</div> , ";
+                    
+                    i++;
+                    
+                }
+                
+                var end = new Date().getTime();
+                
+                var timeTaken = (end - start);
+                
+                if (userNumber >= 1) {
+                    
+                    if (userNumber == 1) {
+                        
+                        document.getElementById('firstAnswer').innerHTML = "<br>The number  1  is not prime because it's not divisible by more than one number!";
+                        
+                        document.getElementById('fourthAnswer').innerHTML = "It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+                    
+                    } else if (divisors.length == 0) {
+                        
+                        document.getElementById('firstAnswer').innerHTML = "<br>The number  <div class = 'tested'> " + userNumber + " </div>  is prime because it's only divisible by itself and  1!";
+                        
+                        document.getElementById('fourthAnswer').innerHTML = "It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+                        
+                    } else {
+                        
+                        document.getElementById('firstAnswer').innerHTML = "<br>The number  <div class = 'tested'> " + userNumber + " </div>  is not prime because it's also divisible by<br> " + divList + "<br>and  1!<br>That's a total of " + divLeng + " divisor(s)";
+                        
+                        document.getElementById('secondAnswer').innerHTML = "Note that if you have two numbers on a line, when you multiply them the result will be the checked number!";
+                        
+                        document.getElementById('thirdAnswer').innerHTML = "If one number appears lonely on the last line (excluding the line with the 'and 1!'), it's the checked number's square root!"; 
+                        
+                        document.getElementById('fourthAnswer').innerHTML = "It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+                        
+                    }
+                        
+                    var pbtn = document.getElementsByClassName("hidden");
+                    
+                    var j = 0
+                    
+                    while (j < pbtn.length){
+                        
+                        pbtn[j].style.display = "inline-block";
+                        
+                        j++;
+                    
+                    }
+                
+                }
+                                    
+            }
+            
+            document.getElementById("nextPrime").onclick = function() {
+                
+                document.getElementById("nextPrime").disabled = "true";
+                
+                var start = new Date().getTime();
+                
+                var primeCandidate = document.getElementById('userNumber').value;
+                
+                primeCandidate++;
+                
+                var operations = 1;
+                
+                if (primeCandidate <= 2) {
+                    
+                    var end = new Date().getTime();
+                    
+                    document.getElementById('answerPrime').innerHTML += "<br><br>The next prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!"; 
+                    
+                    return;
+                     
+                }
+                
+                if (primeCandidate == 3) {
+                    
+                    var end = new Date().getTime();
+                    
+                    document.getElementById('answerPrime').innerHTML += "<br><br>The next prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!"; 
+                    
+                    return;
+                     
+                }
+                
+                if (primeCandidate % 2 == 0){
+                    
+                    primeCandidate++;
+                    
+                }
+                                
+                var loopdiv = 3;
+                                
+                var sqRoot = Math.pow(primeCandidate, 1/2);
+                
+                var primeSearch = true;
+                
+                var divfound = false;            
+                
+                while (primeSearch) {
+                    
+                    while (loopdiv <= sqRoot && !divfound) {
+                        
+                        if (primeCandidate % loopdiv == 0) {
+                            
+                            primeCandidate += 2;
+                            
+                            divfound = true;
+                            
+                            operations++;
+                            
+                        } else {
+                        
+                            loopdiv += 2;
+                        
+                            operations++;
+                        
+                        }
+                    
+                    }
+                    
+                    if (!divfound){
+                        
+                        primeSearch = false;
+                        
+                    } else {
+                        
+                        loopdiv = 3;
+                        
+                        sqRoot = Math.pow(primeCandidate, 1/2);
+                        
+                        divfound = false;
+                        
+                    }              
+                    
+                }
+                
+                var end = new Date().getTime();
+                
+                var timeTaken = (end - start);
+                                
+                document.getElementById('answerPrime').innerHTML += "<br><br>The next prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+                
+                var scroll = document.getElementById('answerPrime');
+                
+                window.scrollTo(scroll.offsetLeft, scroll.offsetTop);
+                
+            }
+            
+            document.getElementById("prevPrime").onclick = function() {
+                
+                document.getElementById("prevPrime").disabled = "true";
+                
+                var start = new Date().getTime();
+                
+                var primeCandidate = document.getElementById('userNumber').value;
+                
+                primeCandidate--;
+                
+                var operations = 1;
+                
+                if (primeCandidate < 2) {
+                    
+                    var end = new Date().getTime();
+                    
+                    document.getElementById('answerPrime').innerHTML += "<br><br>There is no prime number below <br>  <div class = 'tested'>  2  </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!"; 
+                    
+                    return;
+                     
+                }
+                
+                if (primeCandidate == 2) {
+                    
+                    var end = new Date().getTime();
+                    
+                    document.getElementById('answerPrime').innerHTML += "<br><br>The previous prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!"; 
+                    
+                    return;
+                     
+                }
+                
+                if (primeCandidate % 2 == 0){
+                    
+                    primeCandidate--;
+                    
+                }
+                                
+                var loopdiv = 3;
+                                
+                var sqRoot = Math.pow(primeCandidate, 1/2);
+                
+                var primeSearch = true;
+                
+                var divfound = false;
+                
+                while (primeSearch) {
+                    
+                    while (loopdiv <= sqRoot && !divfound) {
+                        
+                        if (primeCandidate % loopdiv == 0) {
+                            
+                            primeCandidate -= 2;
+                            
+                            divfound = true;
+                            
+                            operations++;
+                            
+                        } else {
+                        
+                            loopdiv += 2;
+                        
+                            operations++;
+                        
+                        }
+                    
+                    }
+                    
+                    if (!divfound){
+                        
+                        primeSearch = false;
+                        
+                    } else {
+                        
+                        loopdiv = 3;
+                        
+                        sqRoot = Math.pow(primeCandidate, 1/2);
+                        
+                        divfound = false;
+                        
+                    }              
+                    
+                }
+                
+                var end = new Date().getTime();
+                
+                var timeTaken = (end - start);
+                
+                document.getElementById('answerPrime').innerHTML += "<br><br>The previous prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+                
+                var scroll = document.getElementById('answerPrime');
+                
+                window.scrollTo(scroll.offsetLeft, scroll.offsetTop);
+                
+            }*/
+                  
+        </script>
+    
+</html>
