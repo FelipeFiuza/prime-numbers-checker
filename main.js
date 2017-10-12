@@ -34,7 +34,9 @@ document.getElementById('checkBtn').onclick = function () {
         
         pbtn = "",
         
-        j = 0;
+        j = 0,
+    
+        title = document.title;
 
     if (userNumber % 2 !== 0) {
 
@@ -89,25 +91,58 @@ document.getElementById('checkBtn').onclick = function () {
 
         if (userNumber === 1) {
 
-            document.getElementById('firstAnswer').innerHTML = "<br>The number  1  is not prime because it's not divisible by more than one number!";
+            if (title === "Prime Numbers Checker") {
+           
+                document.getElementById('firstAnswer').innerHTML = "<br>The number <div class = 'tested'> " + userNumber + " </div> is not prime because it's not divisible by more than one number!";
 
-            document.getElementById('fourthAnswer').innerHTML = "It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+                document.getElementById('fourthAnswer').innerHTML = "It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+                
+            } else {
+                
+                document.getElementById('firstAnswer').innerHTML = "<br>O número <div class = 'tested'> " + userNumber + " </div> não é primo pois ele não é divisível por mais de um número!";
+
+                document.getElementById('fourthAnswer').innerHTML = "Foram necessárias " + operations + " operações e levou " + timeTaken + " milisegundos para calcular este número!";
+            }
 
         } else if (divisors.length === 0) {
+            
+            if (title === "Prime Numbers Checker") {
 
-            document.getElementById('firstAnswer').innerHTML = "<br>The number  <div class = 'tested'> " + userNumber + " </div>  is prime because it's only divisible by itself and  1!";
+                document.getElementById('firstAnswer').innerHTML = "<br>The number  <div class = 'tested'> " + userNumber + " </div>  is prime because it's only divisible by itself and  1!";
 
-            document.getElementById('fourthAnswer').innerHTML = "It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+                document.getElementById('fourthAnswer').innerHTML = "It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+                
+            } else {
+               
+                document.getElementById('firstAnswer').innerHTML = "<br>O número  <div class = 'tested'> " + userNumber + " </div>  é primo pois ele é divisível apenas por ele mesmo e por 1!";
+
+                document.getElementById('fourthAnswer').innerHTML = "Foram necessárias " + operations + " operações e levou " + timeTaken + " milisegundos para calcular este número!";
+                
+            }
 
         } else {
-
-            document.getElementById('firstAnswer').innerHTML = "<br>The number  <div class = 'tested'> " + userNumber + " </div>  is not prime because it's also divisible by<br> " + divList + "<br>and  1!<br>That's a total of " + (divLeng + 2) + " divisor(s)";
-
-            document.getElementById('secondAnswer').innerHTML = "Note that if you have two numbers on a line, when you multiply them the result will be the checked number!";
-
-            document.getElementById('thirdAnswer').innerHTML = "If one number appears lonely on the last line (excluding the line with the 'and 1!'), it's the checked number's square root!";
             
-            document.getElementById('fourthAnswer').innerHTML = "It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+            if (title === "Prime Numbers Checker") {
+
+                document.getElementById('firstAnswer').innerHTML = "<br>The number  <div class = 'tested'> " + userNumber + " </div>  is not prime because it's also divisible by<br> " + divList + "<br>and  1!<br>That's a total of " + (divLeng + 2) + " divisor(s)";
+
+                document.getElementById('secondAnswer').innerHTML = "Note that if you have two numbers on a line, when you multiply them the result will be the checked number!";
+
+                document.getElementById('thirdAnswer').innerHTML = "If one number appears lonely on the last line (excluding the line with the 'and 1!'), it's the checked number's square root!";
+            
+                document.getElementById('fourthAnswer').innerHTML = "It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+                
+            } else {
+                
+                document.getElementById('firstAnswer').innerHTML = "<br>O número  <div class = 'tested'> " + userNumber + " </div>  não é primo pois também é divisível por<br> " + divList + "<br>e  1!<br>Um total de " + (divLeng + 2) + " divisores";
+
+                document.getElementById('secondAnswer').innerHTML = "Note que se houver dois números em uma mesma linha, quando multiplicados entre si, o resultado será o número testado!";
+
+                document.getElementById('thirdAnswer').innerHTML = "Se um número aparecer sozinho na última linha (excluindo a linha com o 'e 1'), este será a raiz quadrada do número testado!";
+            
+                document.getElementById('fourthAnswer').innerHTML = "Foram necessárias " + operations + " operações e levou " + timeTaken + " milisegundos para calcular este número!";
+                
+            }
 
         }
 
@@ -149,7 +184,9 @@ document.getElementById("nextPrime").onclick = function () {
 
         divfound = false,
     
-        scroll = "";
+        scroll = "",
+    
+        title = document.title;
 
     primeCandidate += 1;
 
@@ -158,8 +195,16 @@ document.getElementById("nextPrime").onclick = function () {
         end = new Date().getTime();
         
         timeTaken = end - start;
+        
+        if (title === "Prime Numbers Checker") {
 
-        document.getElementById('answerPrime').innerHTML += "<br><br>The next prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+            document.getElementById('answerPrime').innerHTML += "<br><br>The next prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+            
+        } else {
+            
+            document.getElementById('answerPrime').innerHTML += "<br><br>O próximo número primo é <br>  <div class = 'tested'> " + primeCandidate + " </div>Foram necessárias " + operations + " operações e levou " + timeTaken + " milisegundos para calcular este número!";
+            
+        }
         
         return;
 
@@ -170,8 +215,16 @@ document.getElementById("nextPrime").onclick = function () {
         end = new Date().getTime();
         
         timeTaken = end - start;
+        
+        if (title === "Prime Numbers Checker") {
 
-        document.getElementById('answerPrime').innerHTML += "<br><br>The next prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+            document.getElementById('answerPrime').innerHTML += "<br><br>The next prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+            
+        } else {
+            
+            document.getElementById('answerPrime').innerHTML += "<br><br>O próximo número primo é <br>  <div class = 'tested'> " + primeCandidate + " </div>Foram necessárias " + operations + " operações e levou " + timeTaken + " milisegundos para calcular este número!";
+        
+        }
         
         return;
 
@@ -226,8 +279,15 @@ document.getElementById("nextPrime").onclick = function () {
     end = new Date().getTime();
     
     timeTaken = end - start;
+    
+    if (title === "Prime Numbers Checker") {
 
-    document.getElementById('answerPrime').innerHTML += "<br><br>The next prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+        document.getElementById('answerPrime').innerHTML += "<br><br>The next prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+        
+    } else {
+        
+        document.getElementById('answerPrime').innerHTML += "<br><br>O próximo número primo é <br>  <div class = 'tested'> " + primeCandidate + " </div>Foram necessárias " + operations + " operações e levou " + timeTaken + " milisegundos para calcular este número!";
+    }
 
     scroll = document.getElementById('answerPrime');
 
@@ -259,7 +319,9 @@ document.getElementById("prevPrime").onclick = function () {
 
         timeTaken = 0,
         
-        scroll = "";
+        scroll = "",
+    
+        title = document.title;
 
     primeCandidate -= 1;
 
@@ -268,8 +330,16 @@ document.getElementById("prevPrime").onclick = function () {
         end = new Date().getTime();
         
         timeTaken = end - start;
+        
+        if (title === "Prime Numbers Checker") {
 
-        document.getElementById('answerPrime').innerHTML += "<br><br>There is no prime number below <br>  <div class = 'tested'>  2  </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+            document.getElementById('answerPrime').innerHTML += "<br><br>There is no prime number below <br>  <div class = 'tested'>  2  </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+            
+        } else {
+            
+            document.getElementById('answerPrime').innerHTML += "<br><br>Não existe número primo abaixo de <br>  <div class = 'tested'>  2  </div>Foram necessárias " + operations + " operações e levou " + timeTaken + " milisegundos para calcular este número!";
+            
+        }
 
         return;
 
@@ -280,8 +350,16 @@ document.getElementById("prevPrime").onclick = function () {
         end = new Date().getTime();
         
         timeTaken = end - start;
+        
+        if (title === "Prime Numbers Checker") {
 
-        document.getElementById('answerPrime').innerHTML += "<br><br>The previous prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+            document.getElementById('answerPrime').innerHTML += "<br><br>The previous prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+            
+        } else {
+            
+            document.getElementById('answerPrime').innerHTML += "<br><br>O número primo antecessor é <br>  <div class = 'tested'> " + primeCandidate + " </div>Foram necessárias " + operations + " operações e levou " + timeTaken + " milisegundos para calcular este número!";
+            
+        }
 
         return;
 
@@ -336,8 +414,16 @@ document.getElementById("prevPrime").onclick = function () {
     end = new Date().getTime();
 
     timeTaken = end - start;
+        
+    if (title === "Prime Numbers Checker") {
 
-    document.getElementById('answerPrime').innerHTML += "<br><br>The previous prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+        document.getElementById('answerPrime').innerHTML += "<br><br>The previous prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
+        
+    } else {
+        
+        document.getElementById('answerPrime').innerHTML += "<br><br>O número primo antecessor é <br>  <div class = 'tested'> " + primeCandidate + " </div>Foram necessárias " + operations + " operações e levou " + timeTaken + " milisegundos para calcular este número!";
+        
+    }
 
     scroll = document.getElementById('answerPrime');
 
