@@ -8,7 +8,7 @@ document.getElementById('checkBtn').onclick = function () {
     
     var start = new Date().getTime(),
 
-        userNumber = document.getElementById('userNumber').value,
+        userNumber = parseInt(document.getElementById('userNumber').value, 10),
 
         divisors = [],
 
@@ -30,7 +30,11 @@ document.getElementById('checkBtn').onclick = function () {
         
         end = 0,
 
-        timeTaken = 0;
+        timeTaken = 0,
+        
+        pbtn = "",
+        
+        j = 0;
 
     if (userNumber % 2 !== 0) {
 
@@ -53,13 +57,13 @@ document.getElementById('checkBtn').onclick = function () {
                 divisors.push(quotient);
             }
 
-            operations++;
+            operations += 1;
 
             loopdiv += increment;
 
         } else {
 
-            operations++;
+            operations += 1;
 
             loopdiv += increment;
 
@@ -73,7 +77,7 @@ document.getElementById('checkBtn').onclick = function () {
 
         divList += "<div class='result'>" + divisors[i] + "</div> , ";
 
-        i++;
+        i += 1;
 
     }
 
@@ -97,7 +101,7 @@ document.getElementById('checkBtn').onclick = function () {
 
         } else {
 
-            document.getElementById('firstAnswer').innerHTML = "<br>The number  <div class = 'tested'> " + userNumber + " </div>  is not prime because it's also divisible by<br> " + divList + "<br>and  1!<br>That's a total of " + divLeng + " divisor(s)";
+            document.getElementById('firstAnswer').innerHTML = "<br>The number  <div class = 'tested'> " + userNumber + " </div>  is not prime because it's also divisible by<br> " + divList + "<br>and  1!<br>That's a total of " + (divLeng + 2) + " divisor(s)";
 
             document.getElementById('secondAnswer').innerHTML = "Note that if you have two numbers on a line, when you multiply them the result will be the checked number!";
 
@@ -107,15 +111,13 @@ document.getElementById('checkBtn').onclick = function () {
 
         }
 
-        var pbtn = document.getElementsByClassName("hidden"),
-
-            j = 0;
+        pbtn = document.getElementsByClassName("hidden");
 
         while (j < pbtn.length) {
 
             pbtn[j].style.display = "inline-block";
 
-            j++;
+            j += 1;
 
         }
 
@@ -131,7 +133,7 @@ document.getElementById("nextPrime").onclick = function () {
 
     var start = new Date().getTime(),
 
-        primeCandidate = document.getElementById('userNumber').value,
+        primeCandidate = parseInt(document.getElementById('userNumber').value, 10),
     
         operations = 1,
         
@@ -141,13 +143,15 @@ document.getElementById("nextPrime").onclick = function () {
     
         loopdiv = 3,
 
-        sqRoot = Math.pow(primeCandidate, 1 / 2),
+        sqRoot = 0,
 
         primeSearch = true,
 
-        divfound = false;
+        divfound = false,
+    
+        scroll = "";
 
-    primeCandidate++;
+    primeCandidate += 1;
 
     if (primeCandidate <= 2) {
 
@@ -175,9 +179,11 @@ document.getElementById("nextPrime").onclick = function () {
 
     if (primeCandidate % 2 === 0) {
 
-        primeCandidate++;
+        primeCandidate += 1;
 
     }
+        
+    sqRoot = Math.pow(primeCandidate, 1 / 2);
     
     while (primeSearch) {
 
@@ -189,13 +195,13 @@ document.getElementById("nextPrime").onclick = function () {
 
                 divfound = true;
 
-                operations++;
+                operations += 1;
 
             } else {
 
                 loopdiv += 2;
 
-                operations++;
+                operations += 1;
 
             }
 
@@ -223,7 +229,7 @@ document.getElementById("nextPrime").onclick = function () {
 
     document.getElementById('answerPrime').innerHTML += "<br><br>The next prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
 
-    var scroll = document.getElementById('answerPrime');
+    scroll = document.getElementById('answerPrime');
 
     window.scrollTo(scroll.offsetLeft, scroll.offsetTop);
 
@@ -237,11 +243,11 @@ document.getElementById("prevPrime").onclick = function () {
 
     var start = new Date().getTime(),
 
-        primeCandidate = document.getElementById('userNumber').value,
+        primeCandidate = parseInt(document.getElementById('userNumber').value, 10),
     
         loopdiv = 3,
 
-        sqRoot = Math.pow(primeCandidate, 1 / 2),
+        sqRoot = 0,
 
         primeSearch = true,
 
@@ -251,9 +257,11 @@ document.getElementById("prevPrime").onclick = function () {
     
         end = 0,
 
-        timeTaken = 0;
+        timeTaken = 0,
+        
+        scroll = "";
 
-    primeCandidate--;
+    primeCandidate -= 1;
 
     if (primeCandidate < 2) {
 
@@ -281,12 +289,12 @@ document.getElementById("prevPrime").onclick = function () {
 
     if (primeCandidate % 2 === 0) {
 
-        primeCandidate--;
+        primeCandidate -= 1;
 
     }
-
     
-
+    sqRoot = Math.pow(primeCandidate, 1 / 2);
+    
     while (primeSearch) {
 
         while (loopdiv <= sqRoot && !divfound) {
@@ -297,13 +305,13 @@ document.getElementById("prevPrime").onclick = function () {
 
                 divfound = true;
 
-                operations++;
+                operations += 1;
 
             } else {
 
                 loopdiv += 2;
 
-                operations++;
+                operations += 1;
 
             }
 
@@ -331,7 +339,7 @@ document.getElementById("prevPrime").onclick = function () {
 
     document.getElementById('answerPrime').innerHTML += "<br><br>The previous prime number is <br>  <div class = 'tested'> " + primeCandidate + " </div>It was needed " + operations + " operations and it took " + timeTaken + " miliseconds to calculate this number!";
 
-    var scroll = document.getElementById('answerPrime');
+    scroll = document.getElementById('answerPrime');
 
     window.scrollTo(scroll.offsetLeft, scroll.offsetTop);
 
